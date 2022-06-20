@@ -29,13 +29,13 @@ request.interceptors.request.use(config => {
 })
 // 响应拦截
 request.interceptors.response.use(response => {
-  //   // 返回的数据axios默认有一层data
+  // 返回的数据axios默认有一层data
   const { success, message, data } = response.data
   // 根据success判断是否响应成功
   if (success) {
     return data // 成功返回数据
   } else {
-    Message.error(message)
+    Message.error({ message: message || 'Has Error' })
     return Promise.reject(new Error(message)) // 失败返回Promise对象
   }
 }, error => {
@@ -44,7 +44,7 @@ request.interceptors.response.use(response => {
     store.dispatch('user/logout') // 登出action 删除token
     router.push('/login')
   } else {
-    Message.error(error)
+    Message.error({ message: error || 'Has Error' })
   }
   return Promise.reject(error) // 返回执行错误 让当前的执行链跳出成功 直接进入 catch
 })

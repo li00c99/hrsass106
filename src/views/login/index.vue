@@ -113,15 +113,15 @@ export default {
     handleLogin () { // d登入
       this.$refs.loginForm.validate(async valid => {
         if (!valid) return
-        this.loading = true
         try {
+          this.loading = true
           await this['user/login'](this.loginForm)
           this.$router.push('/')
-          this.$message.success('登入成功')
         } catch (error) {
-          console.log(error)
+          console.log(error);
+        } finally {
+          this.loading = false
         }
-        this.loading = false
       })
     }
   }
