@@ -49,9 +49,9 @@ export default {
   methods: {
     handleCommand (command) {
       // 添加
-      if (command == 'add') {
+      if (command === 'add') {
         this.$emit('addDepts', this.treeNode)
-      } else if (command == 'edit') {
+      } else if (command === 'edit') {
         // 编辑
         this.$emit('editDepts', this.treeNode)
       } else {

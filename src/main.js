@@ -14,15 +14,23 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission'// permission control
+// 引入全局注册公共组件
+import Components from '@/components'
+// 注册自定义指令
 import * as directives from '@/directives'
+import * as filters from '@/filters'
 Vue.use(ElementUI, { locale })
-// 如果想要中文版 element-ui，按如下方式声明
-// Vue.use(ElementUI)
+// 注册自定义指令
 Object.keys(directives).forEach(key => {
   Vue.directive(key, directives[key])
 })
 
-
+// 注册格式化过滤器
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+// 注册自定义指令
+Vue.use(Components)
 Vue.config.productionTip = false
 
 new Vue({
